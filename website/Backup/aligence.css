@@ -1,0 +1,190 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.rubik-mono-one-regular {
+  font-family: "Rubik Mono One", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Coolvetica';
+  src: url(Fonts/coolvetica_rg.otf);
+}
+
+body {
+  background-color: #bbebb0;
+}
+
+header{
+  background-color: #091D02;
+  position: relative;
+  padding: 0.7rem 2rem;
+}
+
+.navbar {
+  width: 100%;
+  height: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+}
+
+.hlinks{
+  list-style: none;
+}  
+
+.navbar .hlinks{
+  display: flex;
+  gap: 4rem;
+}
+  
+nav ul .hlinks{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+  
+nav li .hlinks{
+  display: inline-block;
+  margin-left: 70px;
+  padding-top: 35px;
+  position: relative;
+}
+  
+a.hlinks {
+  font-family: "Rubik Mono One", monospace;
+  color: #3EC70B;
+  font-size: 0.7rem;
+  float: left;
+  text-decoration: none;
+}
+  
+a.hlinks:hover{
+  color: #bbebb0;
+}
+  
+a.hlinks::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background-color: #bbebb0;
+  
+  position: absolute;
+  top: 0;
+  width: 0%;
+  
+  transition: all ease-in-out 250ms;
+}
+  
+a.hlinks:hover::before {
+  width: 6.5%;
+}
+
+a.home {
+  font-family: "Rubik Mono One", monospace;
+  color: #3EC70B;
+  font-size: 0.7rem;
+  float: left;
+  text-decoration: none;
+}
+  
+a.home:hover{
+  color: #bbebb0;
+}
+  
+a.home::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background-color: #bbebb0;
+  
+  position: absolute;
+  top: 0;
+  width: 0%;
+  
+  transition: all ease-in-out 250ms;
+}
+  
+a.home:hover::before {
+  width: 3.2%;
+}
+
+.userNdl{
+  display: flex;
+  gap: 1rem;
+  padding-right: 1rem;
+}
+
+.userIcon{
+  padding-right: 1rem;
+}
+
+.sub-profile {
+  display: none;
+  list-style: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+a.sub-profile{
+  color: white;
+}
+
+ .userIcon:hover .sub-profile {
+  display: block;
+  position: absolute;
+  text-align: justify;
+  background-color: #3EC70B;
+  padding: 1rem;
+  font-size: 12px;
+  font-family: 'Coolvetica';
+  border-radius: 8px;
+}
+
+.userIcon:hover .sub-profile ul {
+  display: block;
+}
+
+/* For mobile phones: */
+[class*="col-"] {
+  width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}

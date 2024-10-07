@@ -1,0 +1,52 @@
+.homepage1{
+  display: grid;
+  align-items: center; 
+  align-content: center;
+  grid-template-columns: 2fr 2fr;
+}
+
+.caption {
+  margin-top: 36%;
+}
+
+.img_ali {
+  margin-top: 10%;
+  margin-left: 20%;
+}
+
+.caption_h1 {
+  font-family: 'Coolvetica';
+  font-weight: lighter;
+  font-size: 350%;
+  color: #091D02;
+}
+
+.caption_h2 {
+  margin-top: 1%;
+  font-family: 'Coolvetica';
+  font-weight: lighter;
+  color: #3EC70B;
+}
+
+.btn_download {
+  margin-top: 3%;
+}
+
+.homepage2{
+  margin-top: 10%;
+  text-align: right;
+}
+
+@media screen and (max-width:450px) {
+  .homepage1 {
+    grid-template: 1fr 1fr;
+  }
+
+  .caption_h1{
+    font-size: 100%;
+  }
+
+  .caption_h2{
+    font-size: 80%;
+  }
+}
