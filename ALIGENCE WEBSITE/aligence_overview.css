@@ -1,0 +1,101 @@
+.game_preview {
+    margin-top: 100px;
+    text-align: center;
+    font-family: 'Coolvetica';
+    font-weight: lighter;
+    font-size: 180%;
+    color: #091D02;
+}
+
+.picture_overview{
+    width: 65%;
+}
+
+.greenline {
+    display: block;
+    border-bottom: 7px solid #091D02;
+    margin: 15px auto;
+    width: 50%;
+    text-align: center;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);    
+}
+
+.overview{
+    font-size: 150%;
+}
+
+.description_overview {
+    font-size: 100%;
+    text-align: justify;
+    padding: 3rem;
+}
+
+.game_features{
+    margin-top: 100px;
+    text-align: center;
+    font-family: 'Coolvetica';
+    font-weight: lighter;
+    font-size: 180%;
+    color: #091D02;
+}
+
+@media screen and (max-width:770px) {
+    .game_preview{
+        margin-top: 80px;
+        font-size: 150%;
+    }
+
+    .greenline {
+        display: block;
+        border-bottom: 5px solid #091D02;
+        margin: 15px auto;
+        width: 70%;
+        text-align: center;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);    
+    }
+    
+    .overview {
+        font-size: 120%;
+    }
+
+    .description_overview {
+        font-size: 80%;
+        text-align: justify;
+        padding: 2rem;
+    }
+
+    .game_features{
+        margin-top: 50px;
+        font-size: 150%;
+    }
+}
+
+@media screen and (max-width:450px) {
+    .game_preview{
+        margin-top: 80px;
+        font-size: 110%;
+    }
+
+    .greenline {
+        display: block;
+        border-bottom: 5px solid #091D02;
+        margin: 15px auto;
+        width: 80%;
+        text-align: center;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);    
+    }
+    
+    .overview {
+        font-size: 100%;
+    }
+    .description_overview {
+        font-size: 80%;
+        text-align: justify;
+        padding: 2rem;
+    }
+
+    .game_features{
+        margin-top: 50px;
+        font-size: 110%;
+    }
+}

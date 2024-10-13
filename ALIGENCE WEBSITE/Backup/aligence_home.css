@@ -1,0 +1,38 @@
+body {
+  background-image: url(Pictures/Home/home_img.png);
+  background-size: 600px;
+  background-repeat: no-repeat;
+  overflow-y: scroll;
+  height: auto;
+}
+
+h1 {    
+  font-family: 'Coolvetica';
+  font-weight: lighter;
+  font-size: 77px;
+  padding-left: 600px;
+  padding-top: 200px;
+  text-align: justify;
+  color: #091D02;
+  
+}
+
+h2 {
+  font-family: 'Coolvetica';
+  font-weight: lighter;
+  text-align: justify;
+  padding-left: 600px;
+  font-size: 35px;
+  font-weight: 100;
+  color: #091D02;
+}
+
+.description {
+  font-family: 'Coolvetica';
+  font-weight: lighter;
+  text-align: justify;
+  padding-left: 600px;
+  font-size: 20px;
+  font-weight: 100;
+  color: #3EC70B;
+}
