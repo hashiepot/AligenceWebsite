@@ -61,19 +61,26 @@ body{
     width: 105%;
 }
 
-.forgot{
+.remember{
     display: flex;
     justify-content: space-between;
     margin-bottom: 40px;
+    text-decoration: none;
+    color: #091D02;
 }
 section{
     display: flex;
     align-items: center;
     font-size: 14px;
-    color: #091D02;
 }
 #check{
     margin-right: 10px;
+}
+.remember .btn-admin{
+    font-size: 14px;
+    border: none;
+    background-color: #bbebb0;
+    color: #091D02;
 }
 
 .input-submit{
