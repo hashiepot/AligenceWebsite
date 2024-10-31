@@ -1,0 +1,50 @@
+.aboutus {
+    margin-top: 100px;
+    text-align: center;
+    font-family: 'Coolvetica';
+    letter-spacing: 3px;
+    font-size: 180%;
+    color: #091D02;
+}
+
+.aligence {
+    margin-top: 1%;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: left;
+    font-family: 'Coolvetica';
+    font-weight: lighter;
+    letter-spacing: 3px;
+    font-size: 80%;
+    color: #091D02;
+}
+
+.caption {
+    margin-top: 1%;
+    margin-left: 15%;
+    margin-right: 10%;
+    text-align: justify;
+    letter-spacing: 1px;
+    font-size: 80%;
+    color: #091D02;
+}
+
+.caption2 {
+    margin-top: 1%;
+    margin-left: 15%;
+    margin-right: 10%;
+    text-align: center;
+    letter-spacing: 1px;
+    font-size: 100%;
+    color: #091D02;
+}
+
+.developers {
+    margin-top: 10%;
+    text-align: center;
+    font-family: 'Coolvetica';
+    font-weight: lighter;
+    letter-spacing: 3px;
+    font-size: 180%;
+    color: #091D02;
+}

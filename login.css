@@ -1,0 +1,172 @@
+@font-face {
+    font-family: 'Coolvetica';
+    src: url(Fonts/coolvetica_rg.otf);
+  }
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Coolvetica';
+}
+
+body{
+    background-color: #bbebb0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.back {
+    position: absolute;
+    font-size: 15px;
+    left: 20px; /* Adjusted position */
+    top: 20px;
+}
+.back button{
+    height: 40px;
+    width: 80px;
+    background-color: #091D02;
+    color: #bbebb0;
+    border-radius: 3px;
+}
+
+.login-box{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 600px;
+    height: 480px;
+    padding: 30px;
+}
+
+.welcome .welcome-aligence{
+    text-align: center;
+    margin: 20px 0 40px 0;
+    font-size: 280%;
+    font-weight: 300;
+}
+
+.welcome .welcome-fill{
+    text-align: center;
+    margin: 20px 0 40px 0;
+    font-size: 150%;
+    font-weight: 300;
+}
+
+.input-box .input-field{
+    width: 100%;
+    height: 60px;
+    font-size: 17px;
+    padding: 0 25px;
+    margin-bottom: 15px;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 0px 5px 10px 1px #091D02;
+    outline: none;
+    transition: .3s;
+}
+::placeholder{
+    font-weight: 500;
+    color: #091D02
+}
+.input-field:focus{
+    width: 105%;
+}
+
+.remember{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    text-decoration: none;
+    color: #091D02;
+}
+section{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+#check{
+    margin-right: 10px;
+}
+
+.input-submit{
+    position: relative;
+}
+.btn-submit{
+    width: 100%;
+    height: 60px;
+    background: #091D02;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .3s;
+}
+.input-submit label{
+    font-size: 17px;
+    font-weight: 300;
+    position:absolute;
+    top: 45%;
+    left: 50%;
+    color: #bbebb0;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+.btn-submit:hover{
+    background: #010e00;
+    transform: scale(1.05, 1);
+}
+
+.btn-login label{
+    text-decoration: none;
+    border: none;
+    font-weight: 300;
+    position:absolute;
+    color: #010e00;
+    align-content: center;
+}
+
+@media (max-width: 430px) {
+    .welcome .welcome-aligence{
+        text-align: center;
+        margin: 20px 0 40px 0;
+        font-size: 200%;
+        font-weight: 300;
+    }
+    
+    .welcome .welcome-fill{
+        text-align: center;
+        margin: 20px 0 40px 0;
+        font-size: 100%;
+        font-weight: 300;
+    }
+    .input-box .input-field{
+        height: 40px;
+        font-size: 13px;
+    }
+
+    section{
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+    }
+    .remember .btn-admin{
+        font-size: 12px;
+    }
+
+    .btn-submit{
+        width: 100%;
+        height: 40px;
+    }
+    .input-submit label{
+        font-size: 14px;
+        font-weight: 300;
+    }
+    .btn-submit:hover{
+        background: #010e00;
+        transform: scale(1.05, 1);
+    }
+}
+    
