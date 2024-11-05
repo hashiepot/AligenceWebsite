@@ -36,7 +36,7 @@ var barChartOptions = {
     colors: ['transparent']
   },
   xaxis: {
-    categories: ['No. of Students', 'No. of App Users', 'No. of Teachers', 'No. of Archived Data'],
+    categories: [''],
     title: {
       color: '#f5f7ff',
     },
@@ -44,22 +44,15 @@ var barChartOptions = {
   yaxis: {
     title: {
       text: ''
-    },
+    }
   },
-  legend: {
-    show: true,
-    position: 'top',        // Position legend on the top
-    horizontalAlign: 'left'
-     // Align legend to the left
-  }, 
-
   fill: {
     opacity: 1
   },
   tooltip: {
     y: {
       formatter: function (val) {
-        return val + " entries ";
+        return val;
       }
     }
   }

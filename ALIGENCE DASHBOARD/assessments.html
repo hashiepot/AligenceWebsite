@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AliGence | Assessments</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <link rel="stylesheet" href="assessments.css">
     <link rel="stylesheet" href="sidebar.css">
 </head>
@@ -40,7 +42,7 @@
                 <a href="settings.html" class="active5">
                     <h2>Settings</h2>
                 </a>
-                <a href="../1aligence.html">
+                <a href="../login.html">
                     <button class="btn_logout">LOG OUT</button>
                 </a>
             </div>
@@ -50,33 +52,28 @@
             <div class="header">
                 <h2>Assessments</h2>
                 <!-- Quarter dropdown -->
-                <div class = "dropdown">
-                    <button class = "dropbtn">
-                        <a>Quarter</a>
+                <div class="dropdown">
+                    <button class="dropbtn" id="quarter-btn">
+                        <a>Quarter 1</a>
                     </button>
-                    <div class = "dropdown-content">
-                        <a href="#">Quarter 1</a>
-                        <a href="#">Quarter 2</a>
-                        <a href="#">Quarter 3</a>
-                        <a href="#">Quarter 4</a>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="selectQuarter('Quarter 1')">Quarter 1</a>
+                        <a href="#" onclick="selectQuarter('Quarter 2')">Quarter 2</a>
+                        <a href="#" onclick="selectQuarter('Quarter 3')">Quarter 3</a>
+                        <a href="#" onclick="selectQuarter('Quarter 4')">Quarter 4</a>
                     </div>
                 </div>
                 <!-- Lesson dropdown -->
-                <div class = "dropdown">
-                    <button class = "dropbtn">
-                        <a>Lesson</a>
+                <div class="dropdown">
+                    <button class="dropbtn" id="lesson-btn">
+                        <a>Lesson 1</a>
                     </button>
-                    <div class = "dropdown-content">
-                        <a href="#">Lesson 1</a>
-                        <a href="#">Lesson 2</a>
-                        <a href="#">Lesson 3</a>
-                        <a href="#">Lesson 4</a>
-                        <a href="#">Lesson 5</a>
-                        <a href="#">Lesson 6</a>
-                        <a href="#">Lesson 7</a>
-                        <a href="#">Lesson 8</a>
-                        <a href="#">Lesson 9</a>
-                        <a href="#">Lesson 10</a>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="selectLesson('Lesson 1')">Lesson 1</a>
+                        <a href="#" onclick="selectLesson('Lesson 2')">Lesson 2</a>
+                        <a href="#" onclick="selectLesson('Lesson 3')">Lesson 3</a>
+                        <a href="#" onclick="selectLesson('Lesson 4')">Lesson 4</a>
+                        <a href="#" onclick="selectLesson('Lesson 5')">Lesson 5</a>
                     </div>
                 </div>
                 <!-- Button to open modal -->
@@ -105,39 +102,28 @@
 
     <!-- Modal for adding/editing entries -->
     <div id="myModal" class="modal">
-
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <form id="form" class="row">
 
                 <div class="in-question">
-                    <label for="Question">Question</label>
-                    <input type="text" class="form-control" id="q" placeholder="Enter Question">
+                    <label for="Question">Question:</label>
+                    <input type="text" class="form-control" id="q" placeholder="Enter Question" required>
                 </div>
                 <div class="input-choices">
-                    <div class="in-choiceA">
-                        <label for="choiceA">A. </label>
-                        <input type="text" class="form-control" id="choiceA" placeholder="Enter choice A">
-                    </div>
-                    <div class="in-choiceB">
-                        <label for="choiceB">B. </label>
-                        <input type="text" class="form-control" id="choiceB" placeholder="Enter choice B">
-                    </div>
-                    <div class="in-choiceC">
-                        <label for="choiceC">C. </label>
-                        <input type="text" class="form-control" id="choiceC" placeholder="Enter choice C">
-                    </div>
-                    <div class="in-choiceD">
-                        <label for="choiceD">D. </label>
-                        <input type="text" class="form-control" id="choiceD" placeholder="Enter choice D">
-                    </div>
+                    <label for="Choices">Choices:</label>
+                    <input type="text" placeholder="Option A" name="questionOptionA" id="choiceA" required>
+                    <input type="text" placeholder="Option B" name="questionOptionB" id="choiceB" required>
+                    <input type="text" placeholder="Option C" name="questionOptionC" id="choiceC" required>
+                    <input type="text" placeholder="Option D" name="questionOptionD" id="choiceD" required>
                 </div>
-
-                <div class="input-answer">
-                    <div class="in-answer">
-                        <label for="Answer">Answer: </label>
-                        <input type="text" class="form-control" id="ans" placeholder="Enter the CORRECT ANSWER">
-                    </div>
+                 <br/>
+                <div class="radio-btn">
+                    <label for="Answer">Correct Answer:</label> <br/>
+                    <label><input type="radio" name="questionAnswer" value="A"> Select A</label>
+                    <label><input type="radio" name="questionAnswer" value="B"> Select B</label>
+                    <label><input type="radio" name="questionAnswer" value="C"> Select C</label>
+                    <label><input type="radio" name="questionAnswer" value="D"> Select D</label>
                 </div>
                 <div class="btn">
                     <button type="submit" class="btnSubmit">Submit</button>

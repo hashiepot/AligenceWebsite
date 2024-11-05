@@ -1,15 +1,28 @@
-var selectedRow = null;
-var entryCount = 0;
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyC197CiJGypDz6qJxD0xPrBhrN0u0tTqH4",
+    authDomain: "aligence-4587c.firebaseapp.com",
+    databaseURL: "https://aligence-4587c-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    projectId: "aligence-4587c",
+    storageBucket: "aligence-4587c.appspot.com",
+    messagingSenderId: "483459083057",
+    appId: "1:483459083057:android:9f97de59a19f3a8968de10"
+};
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
 
-// Show Alerts
-function showAlert(message, userInput) {
+let selectedRow = null;
+let entryCount = 0;
+let selectedQuarter = "Quarter 1";
+let selectedLesson = "Lesson 1";
+
+// Show alerts
+function showAlert(message, type) {
     const div = document.createElement("div");
-    div.className = `alert alert-${userInput}`;
+    div.className = `alert alert-${type}`;
     div.appendChild(document.createTextNode(message));
     const container = document.querySelector(".header");
-    const main = document.querySelector(".main");
-    container.insertBefore(div, main);
-
+    container.insertBefore(div, document.querySelector(".main"));
     setTimeout(() => div.remove(), 3000);
 }
 
@@ -20,100 +33,161 @@ function clearFields() {
     document.querySelector("#choiceB").value = "";
     document.querySelector("#choiceC").value = "";
     document.querySelector("#choiceD").value = "";
-    document.querySelector("#ans").value = "";
-    selectedRow = null; // Reset row
+    document.querySelectorAll("[name='questionAnswer']").forEach(radio => radio.checked = false);
+    selectedRow = null;
 }
 
 // Modal functionality
 function openModal() {
     document.getElementById("myModal").style.display = "block";
 }
-// Clear fields when closing modal
 function closeModal() {
     document.getElementById("myModal").style.display = "none";
-    clearFields(); 
+    clearFields();
 }
-
 window.onclick = function (event) {
-    const modal = document.getElementById("myModal");
-    if (event.target == modal) {
-        closeModal();
-    }
+    if (event.target == document.getElementById("myModal")) closeModal();
 }
 
 // Handle form submission
 document.querySelector("#form").addEventListener("submit", (e) => {
     e.preventDefault();
-
-    // GETTING VALUES
     const q = document.querySelector("#q").value;
     const choiceA = document.querySelector("#choiceA").value;
     const choiceB = document.querySelector("#choiceB").value;
     const choiceC = document.querySelector("#choiceC").value;
     const choiceD = document.querySelector("#choiceD").value;
-    const ans = document.querySelector("#ans").value;
+    const ans = document.querySelector("[name='questionAnswer']:checked")?.value;
 
-    // Validate form input
     if (!q || !choiceA || !choiceB || !choiceC || !choiceD || !ans) {
-        confirm("Please fill out all fields!");
+        showAlert("Please fill out all fields!", "warning");
         return;
     }
 
-    // 10 max entries
     if (entryCount >= 10 && selectedRow === null) {
-        confirm("Maximum number of entries reached (10).");
+        showAlert("Maximum number of entries reached (10).", "danger");
         return;
     }
+
+    const questionData = {
+        question: q,
+        choices: { A: choiceA, B: choiceB, C: choiceC, D: choiceD },
+        answer: ans
+    };
 
     if (selectedRow === null) {
-        // ADDING NEW ENTRY
-        const tableContents = document.querySelector("#table-contents");
-        const row = document.createElement("tr");
-
-        row.innerHTML = `
-            <td>${entryCount + 1}</td>
-            <td>${q}</td>
-            <td>A: ${choiceA}, B: ${choiceB}, C: ${choiceC}, D: ${choiceD}</td>
-            <td>${ans}</td>
-            <td>
-                <button class="btn-edit" onclick="editRow(this)">✏️</button>
-                <button class="btn-delete" onclick="deleteRow(this)">🗑️</button>
-            </td>
-        `;
-        tableContents.appendChild(row);
-        entryCount++; // For monitoring of entries
-        confirm("Entry added successfully!");
+        addNewEntry(questionData);
     } else {
-        // EDITING EXISTING ENTRY
-        selectedRow.cells[1].innerHTML = q;
-        selectedRow.cells[2].innerHTML = `A: ${choiceA}, B: ${choiceB}, C: ${choiceC}, D: ${choiceD}`;
-        selectedRow.cells[3].innerHTML = ans;
-        confirm("Entry updated successfully!");
+        updateEntry(questionData);
     }
-
     clearFields();
-    closeModal(); 
+    closeModal();
 });
 
-// Edit Row
-function editRow(td) {
-    selectedRow = td.parentElement.parentElement; 
-    document.querySelector("#q").value = selectedRow.cells[1].innerHTML;
-    const choices = selectedRow.cells[2].innerHTML.split(', ');
-    document.querySelector("#choiceA").value = choices[0].split(': ')[1];
-    document.querySelector("#choiceB").value = choices[1].split(': ')[1];
-    document.querySelector("#choiceC").value = choices[2].split(': ')[1];
-    document.querySelector("#choiceD").value = choices[3].split(': ')[1];
-    document.querySelector("#ans").value = selectedRow.cells[3].innerHTML;
-    openModal(); // Open modal to edit
+// Add a new entry
+function addNewEntry(data) {
+    const newEntryRef = database.ref(`assessments/${selectedQuarter}/${selectedLesson}`).push();
+    newEntryRef.set(data, (error) => {
+        if (error) {
+            showAlert("Error adding entry.", "danger");
+        } else {
+            showAlert("Entry added successfully!", "success");
+            entryCount++;
+            loadData();
+        }
+    });
 }
 
-// Delete Row
+// Update existing entry
+function updateEntry(data) {
+    const key = selectedRow.getAttribute("data-key");
+    database.ref(`assessments/${selectedQuarter}/${selectedLesson}/${key}`).set(data, (error) => {
+        if (error) {
+            showAlert("Error updating entry.", "danger");
+        } else {
+            showAlert("Entry updated successfully!", "success");
+            loadData();
+        }
+    });
+}
+
+// Load data from Firebase for selected quarter and lesson
+function loadData() {
+    database.ref(`assessments/${selectedQuarter}/${selectedLesson}`).once("value", (snapshot) => {
+        const tableContents = document.querySelector("#table-contents");
+        tableContents.innerHTML = "";
+        entryCount = 0;
+
+        snapshot.forEach((childSnapshot) => {
+            const data = childSnapshot.val();
+            const row = document.createElement("tr");
+            row.setAttribute("data-key", childSnapshot.key);
+            row.innerHTML = `
+                <td>${++entryCount}</td>
+                <td>${data.question}</td>
+                <td>A: ${data.choices.A}, B: ${data.choices.B}, C: ${data.choices.C}, D: ${data.choices.D}</td>
+                <td>${data.answer}: ${data.choices[data.answer]}</td>
+                <td>
+                    <button class="btn-edit" onclick="editRow(this)">✏️</button>
+                    <button class="btn-delete" onclick="deleteRow(this)">🗑️</button>
+                </td>
+            `;
+            tableContents.appendChild(row);
+        });
+    });
+}
+
+// Edit an existing entry
+function editRow(td) {
+    selectedRow = td.parentElement.parentElement;
+    const key = selectedRow.getAttribute("data-key");
+    database.ref(`assessments/${selectedQuarter}/${selectedLesson}/${key}`).once("value", (snapshot) => {
+        const data = snapshot.val();
+        document.querySelector("#q").value = data.question;
+        document.querySelector("#choiceA").value = data.choices.A;
+        document.querySelector("#choiceB").value = data.choices.B;
+        document.querySelector("#choiceC").value = data.choices.C;
+        document.querySelector("#choiceD").value = data.choices.D;
+        document.querySelector(`[name='questionAnswer'][value='${data.answer}']`).checked = true;
+        openModal();
+    });
+}
+
+// Delete an entry
 function deleteRow(td) {
     if (confirm("Are you sure you want to delete this entry?")) {
-        const row = td.parentElement.parentElement;
-        document.querySelector("#table-contents").deleteRow(row.rowIndex - 1);
-        entryCount--; 
-        confirm("Entry deleted successfully!", "danger");
+        const key = td.parentElement.parentElement.getAttribute("data-key");
+        database.ref(`assessments/${selectedQuarter}/${selectedLesson}/${key}`).remove()
+            .then(() => {
+                showAlert("Entry deleted successfully!", "danger");
+                entryCount--;
+                loadData();
+            })
+            .catch((error) => showAlert("Error deleting entry.", "danger"));
     }
 }
+
+// Functions to update dropdown labels and selection
+function selectQuarter(quarter) {
+    selectedQuarter = quarter;
+    document.getElementById("quarter-btn").innerText = quarter;
+    loadData(); // Reload data based on the new selection
+}
+
+function selectLesson(lesson) {
+    selectedLesson = lesson;
+    document.getElementById("lesson-btn").innerText = lesson;
+    loadData(); // Reload data based on the new selection
+}
+
+// Event listeners for the quarter and lesson selection in dropdown
+document.querySelectorAll(".dropdown-content a").forEach((link) => {
+    link.addEventListener("click", function (event) {
+        const text = event.target.textContent;
+        if (text.includes("Quarter")) selectQuarter(text);
+        else if (text.includes("Lesson")) selectLesson(text);
+    });
+});
+
+// Initial data load for default selection
+loadData();

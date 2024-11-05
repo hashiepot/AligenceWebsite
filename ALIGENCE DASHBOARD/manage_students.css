@@ -1,6 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&family=Poppins:wght@100;200;300;400&display=swap');
+@font-face {
+    font-family: 'WorkSans';
+    src: url(../Fonts/worksans.ttf);
+}
 
-
+* {
+    font-family: 'WorkSans';
+}
 
 :root {
     --color-primary: #7380ec;
@@ -25,187 +30,42 @@
     --padding-1: 1.2rem;
 
     --box-shadow: 0 2rem 3rem var(--color-light);
-
-}
-
-*{
-    margin: 0;
-    padding: 0;
-    outline: 0;
-    appearance: none;
-    border: 0;
-    text-decoration: none;
-    list-style: none;
-    box-sizing: border-box;
-}
-
-html{
-    font-size: 14px;
-}
-
-body{
-    width: 100vw;
-    height: 100vh;
-    font-family: roboto, sans-serif;
-    font-size: 0.88rem;
-    background: var(--color-background);
-    user-select: none;
-    overflow-x: hidden;
-}
-
-.container {
-    display: grid;
-    width: 100%;
-    margin: 0 auto;
-    background: #C3EEB3;
-    gap: 1.8rem;
-    grid-template-columns: 20rem auto 23rem;
-    text-align: center;
-}
-
-a{
-    color: var(--color-dark);
-}
-
-img {
-    display: block;
-    width: 70%; 
-}
-
-h1{
-    font-weight: 800;
-    font-size: 1.8rem;
-}
-
-h2{
-    font-size: 1.4rem;
-}
-
-h3{
-    font-size: 0.87rem;
-}
-
-h4{
-    font-size: 0.8rem;
-}
-
-h5{
-    font-size: 0.77rem;
-}
-
-small{
-    font-size: 0.75rem;
-}
-
-.text-muted {
-    color: var(--color-info-dark);
-}
-
-p{
-    color: var(--color-dark-variant);
-}
-
-b{
-    color: var(--color-dark);
-}
-
-.primary{
-    color: var(--color-primary);
-}
-
-.danger{
-    color: var(--color-danger);
-}
-
-.success{
-    color: var(--color-success);
-}
-
-.warning{
-    color: var(--color-warning);
-}
-
-aside {
-    background: #3EC70B;
-}
-
-
-.logo {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-left: 5rem;
-    margin-top: 1.4rem;
-    margin-bottom: 2rem;
-    width: 20rem; 
-    margin-top: 2rem;
-}
-
-
-.btn_logout {
-    width: 220px;
-    height: 35px;
-    font-family: roboto, sans-serif;
-    font-size: 20px;
-    font-weight: none;
-    border-radius: 10px;
-    color: #ffffff;
-    background-color: #329F09;
-    border-style: none;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-    margin-right: 2.5rem;
-}
-
-/* ===============SIDEBAR=============*/
-
-.sidebar {
-    background: #3EC70B;
-    display: flex;
-    flex-direction: column;
-    height: 86vh;
-    position: relative;
-    top: 3rem;
-}
-
-h3 {
-    font-weight: 500;
 }
 
 .sidebar a {
     display: flex;
-    color: #ffffff;
-    margin-left: 1rem;
-    gap: 1rem;
-    align-items: center;
-    position: relative;
-    height: 3.7rem;
-    transition: all 300ms ease; 
-    justify-content: center;
-
+    align-items: center; /* Center vertically */
+    padding: 20px 30px; /* Padding around links */
+    color: #ffffff; /* Text color */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s;
 }
 
 .sidebar a:last-child {
     position: absolute;
     bottom: 2rem;
     width: 100%;
-    margin-bottom: 5rem;
 }
 
 .sidebar a.active2 {
     background: #C3EEB3;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
     color: #1C5A05;
     margin-left: 0;
+    padding: 1rem 2rem; /* Adjust padding for width and height */
+    font-size: 1.2rem; /* Adjust font size */
+    height: 4rem; /* Set a specific height */
+    width: auto;
 }
-
 .sidebar a:hover {
     color: #1C5A05;
 }
 
 /*---------MAIN DASHBOARD---------*/
+
 main {
-    padding: 1rem;
+    padding: 0.5rem;
     text-align: left;
     grid-column: 2 / span 1; 
     margin-top: 2rem;
@@ -248,21 +108,61 @@ main {
     font-size: 16px;
 }   
 
-#addStudentBtn {
-    padding: 10px 15px;
-    background-color: #3498db;
-    color: white;
-    border: none;
+.dropdown button {
+    font-family: 'WorkSans';
+    width: 100px;
+    height: 35px;
+    background-color: #1C5A05;
+    color: #C3EEB3;
+    border-radius: 10px;
     cursor: pointer;
 }
-#studentsTable {
+
+.dropdown a {
+    display: block;
+    color: #C3EEB3;
+    text-decoration: none;
+    word-spacing: 2px;
+    font-size: 13px;
+}
+
+.dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #3EC70B;
+    min-width: 100px;
+    box-shadow: 2px 2px 5px rgba(28, 90, 5, 0.8);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown .dropdown-content a:hover {
+    width: 100%;
+    background-color: #C3EEB3; 
+    color: #1C5A05;
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
-#studentsTable th, #studentsTable td {
+
+th, td {
+    padding: 12px;
     border: 1px solid #ddd;
-    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #3EC70B;
+    color: white;
+}
+
+td {
+    background-color: #fff;
 }
 .edit-icon, .delete-icon {
     cursor: pointer;
@@ -282,7 +182,8 @@ main {
     align-items: center;
 }
 .modal-content {
-    background-color: #fff;
+    background-color: #C3EEB3; 
+    color: #1C5A05;
     padding: 20px;
     border-radius: 8px;
     width: 300px;
@@ -302,14 +203,61 @@ main {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+#addStudentBtn {
+    font-family: 'WorkSans';
+    font-size: 13px;
+    background-color: #1C5A05; 
+    color: #C3EEB3;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: #1C5A05;
+    cursor: pointer;
+}
+#addStudentBtn:hover{
+    background-color: #3EC70B;
+    color: #1C5A05;
+}
 .close {
     float: right;
     font-size: 1.2rem;
     cursor: pointer;
 }
+.modal-section-dropdown {
+    position: relative;
+    display: inline-block;
+}
+.modal-section-dropdown-btn {
+    background-color: #f9f9f9;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    width: 100%;
+}
+.modal-section-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.modal-section-dropdown-content a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+}
+.modal-section-dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+.modal-section-dropdown:hover .modal-section-dropdown-content {
+    display: block;
+}
 #saveStudentBtn {
     padding: 10px 15px;
-    background-color: #2ecc71;
+    margin-top: 20px;
+    background-color: #3EC70B;
     color: white;
     border: none;
     cursor: pointer;

@@ -3,40 +3,62 @@
     src: url(../Fonts/worksans.ttf);
 }
 
-* {
-    font-size: 13px;
+:root {
+    --color-primary: #7380ec;
+    --color-danger: #ff7782;
+    --color-success: #41f1b6;
+    --color-warning: #ffbb55;
+    --color-white: #fff;
+    --color-info-dark: #7d8da1;
+    --color-info-light: #dce1eb;
+    --color-dark: #363949;
+    --color-light: rgba(132, 139, 200, 0.18);
+    --color-primary-variant: #111e88;
+    --color-dark-variant: #677483;
+    --color-background: #C3EEB3;
+
+    --card-border-radius: 2rem;
+    --border-radius-1: 0.4rem;
+    --border-radius-2: 0.8rem;
+    --border-radius-2: 1.2rem;
+
+    --card-padding: 1.8rem;
+    --padding-1: 1.2rem;
+
+    --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
 .sidebar a {
     display: flex;
-    color: #ffffff;
-    margin-left: 1rem;
-    gap: 1rem;
-    align-items: center;
-    position: relative;
-    height: 3.7rem;
-    transition: all 300ms ease; 
-    justify-content: center;
+    align-items: center; /* Center vertically */
+    padding: 20px 30px; /* Padding around links */
+    color: #ffffff; /* Text color */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s;
 }
 
 .sidebar a:last-child {
     position: absolute;
     bottom: 2rem;
     width: 100%;
-    margin-bottom: 5rem;
 }
 
 .sidebar a.active3 {
     background: #C3EEB3;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
     color: #1C5A05;
     margin-left: 0;
+    padding: 1rem 2rem; /* Adjust padding for width and height */
+    font-size: 1.2rem; /* Adjust font size */
+    height: 4rem; /* Set a specific height */
+    width: auto;
 }
-
 .sidebar a:hover {
     color: #1C5A05;
 }
+
+/* ---- ASSESSMENTS ---- */
 
 main {
     padding: 0.5rem;
@@ -47,27 +69,25 @@ main {
 
 .dropdown button {
     font-family: 'WorkSans';
-    font-size: 15px;
     width: 100px;
-    height: 30px;
-    background-color: #3EC70B;
-    color: #091D02;
+    height: 35px;
+    background-color: #1C5A05;
+    color: #C3EEB3;
     border-radius: 10px;
-    border: #1C5A05;
     cursor: pointer;
 }
 
 .dropdown a {
     display: block;
-    color: #1C5A05;
+    color: #C3EEB3;
     text-decoration: none;
+    word-spacing: 2px;
+    font-size: 13px;
 }
 
 .dropdown .dropdown-content {
     display: none;
     position: absolute;
-    padding: 6px 10px; 
-    font-size: 15px;
     background-color: #3EC70B;
     min-width: 100px;
     box-shadow: 2px 2px 5px rgba(28, 90, 5, 0.8);
@@ -78,6 +98,7 @@ main {
 }
 
 .dropdown .dropdown-content a:hover {
+    width: 100%;
     background-color: #C3EEB3; 
     color: #1C5A05;
 }
@@ -93,48 +114,45 @@ main {
     align-items: flex-start;
 }
 
-.modal .modal-content input{
+.modal .modal-content input {
     margin-top: 10px;
     text-align: center;
 }
-.modal-content form{
+
+.modal-content form {
     margin: 1px;
-    font-size: 12px;
+    font-size: 15px;
     align-items: center;
 }
-.modal input{
+
+.modal input[type="text"] {
     margin: 5px;
-    width: 100px;
     height: 22px;
     position: relative;
     font-family: 'WorkSans';
     text-align: center;
-    justify-content: space-evenly;
     border: 1.5px solid #1C5A05;
     border-radius: 5px;
     color: #091D02;
 }
-.modal.in-answer{
-    display: flex;
-    text-align: center;
-    width: 250px;
-}
 
 .btn button{
-    margin: 1rem;
+    margin: 30px;
     width: 20%;
-    height: 30px;
-    font-size: 15px;
+    height: 35px;
     font-family: 'WorkSans';
-    color: #091D02;
-    background-color: #3EC70B;
+    background-color: #1C5A05;
+    color: #C3EEB3;
     min-width: 100px;
     border: 1.5px solid #1C5A05;
     border-radius: 5px;
 }
+.btn a{
+    font-size: 15px;
+}
 .btn button:hover{
-    background-color: #1C5A05;
-    color: #C3EEB3;
+    background-color: #3EC70B;
+    color: #1C5A05;
     border: 1.5px solid #091D02;
 }
 
@@ -146,9 +164,8 @@ table {
 
 th, td {
     padding: 12px;
-    border: 1px solid #091D02;
-    text-align: center;
-    font-size: 15px;
+    border: 1px solid #ddd;
+    text-align: left;
 }
 
 th {
@@ -181,14 +198,18 @@ td {
 
 .btnAddEntry {
     font-family: 'WorkSans';
-    font-size: 12px;
+    font-size: 13px;
     width: 100px;
-    height: 30px;
-    background-color: #3EC70B;
-    color: #091D02;
+    height: 35px;
+    background-color: #1C5A05;
+    color: #C3EEB3;
     border-radius: 10px;
     border: #1C5A05;
     cursor: pointer;
+}
+.btnAddEntry:hover{
+    background-color: #3EC70B;
+    color: #1C5A05;
 }
 
 .modal {
@@ -229,6 +250,27 @@ td {
     cursor: pointer;
 }
 
+input[type="radio"] {
+    margin: 10px;   
+    appearance: auto; /* Use the browser's default appearance */
+    width: auto; /* Use default width */
+    height: auto; /* Use default height */
+    margin: 0; /* Reset margin */
+    padding: 0; /* Reset padding */
+    outline: none; /* Remove outline */
+}
+
+input#q {
+    margin: 30px;
+    width: 100%;
+    max-width: 500px;
+    height: 50px;
+    font-size: 15px;
+}
+
+input.radio-button{
+    margin: 20px;
+}
 
 /* RESPONSIVENESS */
 @media (max-width: 768px) {

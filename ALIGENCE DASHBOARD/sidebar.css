@@ -152,6 +152,9 @@ aside {
     height: 86vh;
     position: relative;
     top: 3rem;
+    flex-direction: column;
+    padding-top: 20px
+    
 }
 
 h3 {
